@@ -1,3 +1,4 @@
+import 'package:connect_api_endpoint/src/common_widgets/image_circular_custom.dart';
 import 'package:connect_api_endpoint/src/features/users/data/user_repository.dart';
 import 'package:connect_api_endpoint/src/features/users/presentasion/detail/detail_screen.dart';
 import 'package:flutter/material.dart';
@@ -33,9 +34,7 @@ class UsersScreen extends ConsumerWidget {
                       child: ListTile(
                         title: Text(value.firstName),
                         subtitle: Text(value.lastName),
-                        trailing: CircleAvatar(
-                          backgroundImage: NetworkImage(value.avatar),
-                        ),
+                        trailing: ImageCircularCustom(image: value.avatar),
                       ),
                     ),
                   ],

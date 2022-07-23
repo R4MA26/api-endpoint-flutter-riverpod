@@ -1,3 +1,4 @@
+import 'package:connect_api_endpoint/src/common_widgets/image_circular_custom.dart';
 import 'package:connect_api_endpoint/src/features/users/domain/user.dart';
 import 'package:flutter/material.dart';
 
@@ -19,9 +20,9 @@ class DetailScreen extends StatelessWidget {
             const SizedBox(
               height: 50,
             ),
-            CircleAvatar(
-              maxRadius: 60,
-              backgroundImage: NetworkImage(dataUser.avatar),
+            ImageCircularCustom(
+              size: 60,
+              image: dataUser.avatar,
             ),
             const SizedBox(
               height: 10,
