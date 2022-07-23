@@ -1,13 +1,12 @@
 import 'dart:convert';
 
 import 'package:connect_api_endpoint/src/features/users/domain/user.dart';
-import 'package:http/http.dart';
+import 'package:connect_api_endpoint/src/utils/api.dart';
+import 'package:http/http.dart' as http;
 
 class UserApi {
-  String endpoint = 'https://reqres.in/api/users?page=2';
-
   Future<List<User>> getUser() async {
-    Response res = await get(Uri.parse(endpoint));
+    final res = await http.get(Uri.parse(Apis.getUser));
     if (res.statusCode == 200) {
       final List result = jsonDecode(res.body)['data'];
       return result.map((value) => User.fromJson(value)).toList();
