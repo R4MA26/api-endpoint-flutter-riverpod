@@ -7,12 +7,12 @@ class UserApi {
   String endpoint = 'https://reqres.in/api/users?page=2';
 
   Future<List<User>> getUser() async {
-    Response response = await get(Uri.parse(endpoint));
-    if (response.statusCode == 200) {
-      final List result = jsonDecode(response.body)['data'];
+    Response res = await get(Uri.parse(endpoint));
+    if (res.statusCode == 200) {
+      final List result = jsonDecode(res.body)['data'];
       return result.map((e) => User.fromJson(e)).toList();
     } else {
-      throw Exception(response.reasonPhrase);
+      throw Exception(res.reasonPhrase);
     }
   }
 }
