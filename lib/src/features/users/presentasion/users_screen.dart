@@ -1,5 +1,5 @@
-import 'package:connect_api_endpoint/src/features/detail/presentation/detail_screen.dart';
 import 'package:connect_api_endpoint/src/features/users/data/user_repository.dart';
+import 'package:connect_api_endpoint/src/features/users/presentasion/detail/detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
