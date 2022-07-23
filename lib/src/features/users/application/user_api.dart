@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:connect_api_endpoint/src/features/users/domain/user.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart';
 
 class UserApi {
@@ -17,9 +16,3 @@ class UserApi {
     }
   }
 }
-
-final apiProvider = Provider<UserApi>((ref) => UserApi());
-
-final userDataProvider = FutureProvider<List<User>>((ref) async {
-  return ref.read(apiProvider).getUser();
-});
