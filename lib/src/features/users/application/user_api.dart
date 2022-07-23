@@ -10,7 +10,7 @@ class UserApi {
     Response res = await get(Uri.parse(endpoint));
     if (res.statusCode == 200) {
       final List result = jsonDecode(res.body)['data'];
-      return result.map((e) => User.fromJson(e)).toList();
+      return result.map((value) => User.fromJson(value)).toList();
     } else {
       throw Exception(res.reasonPhrase);
     }
