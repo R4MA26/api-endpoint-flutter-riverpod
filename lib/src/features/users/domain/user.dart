@@ -22,7 +22,7 @@ class User {
   factory User.fromJson(Map<String, dynamic> json) => User(
         id: json["id"],
         email: json["email"],
-        firstName: json["first_name"] ?? 'Firs Name',
+        firstName: json["first_name"] ?? 'First Name',
         lastName: json["last_name"] ?? 'Last Name',
         avatar: json["avatar"] ??
             'https://images.unsplash.com/photo-1658431618300-a69b07fb5782?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60',
