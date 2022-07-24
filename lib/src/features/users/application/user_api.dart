@@ -31,6 +31,5 @@ class UserApi {
     } catch (e) {
       log("${e}gtgtg");
     }
-    // return null;
   }
 }
