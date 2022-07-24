@@ -23,7 +23,7 @@ class UserPostApi {
         return UserPost.fromJson(jsonDecode(res.body));
       }
     } catch (e) {
-      print(e);
+      log("$e Failed");
     }
     return null;
   }

@@ -29,7 +29,7 @@ class UserApi {
         log('res 204: Delete Succesfull $res');
       }
     } catch (e) {
-      log("${e}gtgtg");
+      log("$e Failed");
     }
   }
 }
