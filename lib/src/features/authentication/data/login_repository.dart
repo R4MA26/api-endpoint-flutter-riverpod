@@ -28,7 +28,7 @@ class LoginUserRepository extends ChangeNotifier {
         ),
       );
     } else {
-      log("Failed");
+      log("Failed Route");
     }
   }
 }
