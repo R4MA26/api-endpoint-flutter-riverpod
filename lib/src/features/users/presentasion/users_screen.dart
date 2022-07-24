@@ -8,17 +8,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UsersScreen extends ConsumerWidget {
-  const UsersScreen({Key? key}) : super(key: key);
+  const UsersScreen({required this.token, Key? key}) : super(key: key);
+
+  final String? token;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final data = ref.watch(userDataProvider);
     final deleteUserProvider = ref.read(userDeleteDataProvider);
+    // final login = ref.read(loginUserRepositoryProvider);
+
+    // log(login.getToken() ?? "kosong");
 
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Users'),
+        title: Text('$token'),
         actions: [
           Padding(
             padding: const EdgeInsets.all(15),

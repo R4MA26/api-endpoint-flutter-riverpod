@@ -1,4 +1,4 @@
-import 'package:connect_api_endpoint/src/features/users/presentasion/users_screen.dart';
+import 'package:connect_api_endpoint/src/features/authentication/presentation/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const UsersScreen(),
+      home: const LoginScreen(),
     );
   }
 }

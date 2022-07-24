@@ -1,40 +1,45 @@
-import 'dart:developer';
-
-import 'package:connect_api_endpoint/src/features/users/data/user_post_repository.dart';
-import 'package:connect_api_endpoint/src/features/users/domain/user_post.dart';
+import 'package:connect_api_endpoint/src/features/authentication/data/login_repository.dart';
+import 'package:connect_api_endpoint/src/features/authentication/domain/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CreateUsersScreen extends ConsumerStatefulWidget {
-  const CreateUsersScreen({super.key});
+class LoginScreen extends ConsumerStatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  CreateUsersScreenState createState() => CreateUsersScreenState();
+  LoginScreenState createState() => LoginScreenState();
 }
 
-class CreateUsersScreenState extends ConsumerState<CreateUsersScreen> {
+class LoginScreenState extends ConsumerState<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerName = TextEditingController();
-  final TextEditingController _controllerJob = TextEditingController();
-  UserPost? _data;
+  final TextEditingController _controllerEmail =
+      TextEditingController(text: 'eve.holt@reqres.in');
+  final TextEditingController _controllerPassword =
+      TextEditingController(text: 'cityslicka');
+  // late Login _data;
 
   @override
   Widget build(BuildContext context) {
-    final postUserProvider = ref.read(postUserRepositoryProvider);
+    Login? data;
+    final loginProvider = ref.read(loginUserRepositoryProvider);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Create User'),
+        title: const Text('Login'),
         centerTitle: true,
       ),
       body: Center(
         child: Form(
           key: _formKey,
-          child: Padding(
+          child: Container(
             padding: const EdgeInsets.all(16),
+            width: MediaQuery.of(context).size.width,
             child: Column(
               children: [
+                const SizedBox(
+                  height: 40,
+                ),
                 TextFormField(
-                  controller: _controllerName,
+                  controller: _controllerEmail,
                   obscureText: false,
                   validator: (text) {
                     if (text == null || text.isEmpty) {
@@ -54,7 +59,7 @@ class CreateUsersScreenState extends ConsumerState<CreateUsersScreen> {
                     ),
                     filled: true,
                     fillColor: Colors.white,
-                    hintText: "Masukkan Name",
+                    hintText: "Masukkan Email",
                     border: OutlineInputBorder(),
                   ),
                 ),
@@ -62,7 +67,7 @@ class CreateUsersScreenState extends ConsumerState<CreateUsersScreen> {
                   height: 10,
                 ),
                 TextFormField(
-                  controller: _controllerJob,
+                  controller: _controllerPassword,
                   obscureText: false,
                   validator: (text) {
                     if (text == null || text.isEmpty) {
@@ -79,7 +84,7 @@ class CreateUsersScreenState extends ConsumerState<CreateUsersScreen> {
                     ),
                     filled: true,
                     fillColor: Colors.white,
-                    hintText: "Masukkan Job",
+                    hintText: "Masukkan Paswword",
                     border: OutlineInputBorder(),
                   ),
                 ),
@@ -88,16 +93,15 @@ class CreateUsersScreenState extends ConsumerState<CreateUsersScreen> {
                   child: ElevatedButton(
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        _data = await postUserProvider.addUser(
-                            _controllerName.text, _controllerJob.text);
+                        await loginProvider.loginUser(_controllerEmail.text,
+                            _controllerPassword.text, context);
+                        // ignore: use_build_context_synchronously
+
                       }
-                      log(_data?.name.toString() ?? "Failed");
-                      log(_data?.job.toString() ?? "Failed");
                     },
-                    child: const Text('Submit'),
+                    child: const Text('Login'),
                   ),
                 ),
-                // Text(data?.name.toString() ?? "Empty")
               ],
             ),
           ),
@@ -105,4 +109,20 @@ class CreateUsersScreenState extends ConsumerState<CreateUsersScreen> {
       ),
     );
   }
+
+  // void _login() {
+  //   // var res = await LoginApi.loginUser();
+  //   // var data = jsonDecode(res.body.toString());
+
+  //   // final login = ref.read(loginUserRepositoryProvider);
+  //   // final loggedIn = login.currentUser == null ? false : true;
+  //   // if (data['token']) {
+  //   Navigator.pushReplacement(
+  //     context,
+  //     MaterialPageRoute(builder: (context) => const UsersScreen()),
+  //   );
+  //   // } else {
+  //   //   print('Failed Route');
+  //   // }
+  // }
 }
