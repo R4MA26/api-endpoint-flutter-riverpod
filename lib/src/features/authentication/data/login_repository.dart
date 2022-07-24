@@ -20,11 +20,13 @@ class LoginUserRepository extends ChangeNotifier {
     if (data != null) {
       setToken(data.token);
       // ignore: use_build_context_synchronously
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (context) {
-          return UsersScreen(token: data.token);
-        },
-      ));
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) {
+            return UsersScreen(token: data.token);
+          },
+        ),
+      );
     } else {
       log("Failed");
     }
