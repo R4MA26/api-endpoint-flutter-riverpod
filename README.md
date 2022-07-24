@@ -5,6 +5,8 @@ Get Api Using Riverpod
 
 Post Api Using Riverpod
 
+Delete Api Using Riverpod
+
 A new Flutter project.
 
 ## Getting Started
