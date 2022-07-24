@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 class UserPostApi {
   static Future<UserPost?> postUser({String? name, String? job}) async {
     try {
-      final res = await http.post(
+      final http.Response res = await http.post(
         Uri.parse(Apis.postUser),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
