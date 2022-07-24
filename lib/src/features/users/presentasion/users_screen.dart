@@ -61,7 +61,7 @@ class UsersScreen extends ConsumerWidget {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text(
-                                  'Name: ${value.firstName},id: ${value.id} dismissed'),
+                                  'Name: ${value.firstName},id: ${value.id} Deleted'),
                             ),
                           );
                         },
