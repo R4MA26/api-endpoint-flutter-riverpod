@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:connect_api_endpoint/src/common_widgets/image_circular_custom.dart';
 import 'package:connect_api_endpoint/src/features/users/data/user_repository.dart';
 import 'package:connect_api_endpoint/src/features/users/presentasion/create_users/create_user_screen.dart';
@@ -11,6 +13,8 @@ class UsersScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final data = ref.watch(userDataProvider);
+    final deleteUserProvider = ref.read(userDeleteDataProvider);
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -45,10 +49,27 @@ class UsersScreen extends ConsumerWidget {
                           ),
                         ),
                       ),
-                      child: ListTile(
-                        title: Text(value.firstName),
-                        subtitle: Text(value.lastName),
-                        trailing: ImageCircularCustom(image: value.avatar),
+                      child: Dismissible(
+                        key: UniqueKey(),
+                        background: Container(
+                          color: Colors.red,
+                        ),
+                        onDismissed: (direction) {
+                          deleteUserProvider.delUser(value.id);
+                          log(value.id.toString());
+
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                  'Name: ${value.firstName},id: ${value.id} dismissed'),
+                            ),
+                          );
+                        },
+                        child: ListTile(
+                          title: Text(value.firstName),
+                          subtitle: Text(value.lastName),
+                          trailing: ImageCircularCustom(image: value.avatar),
+                        ),
                       ),
                     ),
                   ],
