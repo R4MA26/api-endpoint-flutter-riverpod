@@ -1,4 +1,4 @@
-import 'package:connect_api_endpoint/src/features/create_users/aplication/create_user_api.dart';
+import 'package:connect_api_endpoint/src/features/users/application/create_user_api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
