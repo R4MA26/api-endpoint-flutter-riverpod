@@ -57,7 +57,6 @@ class UsersScreen extends ConsumerWidget {
                         onDismissed: (direction) {
                           deleteUserProvider.delUser(value.id);
                           log(value.id.toString());
-
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text(
