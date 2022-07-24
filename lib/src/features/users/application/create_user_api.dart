@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:connect_api_endpoint/src/features/create_users/domain/user_post.dart';
+import 'package:connect_api_endpoint/src/features/users/domain/user_post.dart';
 import 'package:connect_api_endpoint/src/utils/api.dart';
 import 'package:http/http.dart' as http;
 

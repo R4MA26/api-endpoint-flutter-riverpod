@@ -1,10 +1,9 @@
 import 'dart:developer';
 
-import 'package:connect_api_endpoint/src/features/create_users/data/user_post_repository.dart';
+import 'package:connect_api_endpoint/src/features/users/data/user_post_repository.dart';
+import 'package:connect_api_endpoint/src/features/users/domain/user_post.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../domain/user_post.dart';
 
 class CreateUsersScreen extends ConsumerWidget {
   const CreateUsersScreen({Key? key}) : super(key: key);
@@ -69,7 +68,7 @@ class CreateUsersScreen extends ConsumerWidget {
                 },
                 child: const Text('Submit'),
               ),
-              Text(data?.name.toString() ?? "Empty")
+              // Text(data?.name.toString() ?? "Empty")
             ],
           ),
         ),

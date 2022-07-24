@@ -1,6 +1,6 @@
 import 'package:connect_api_endpoint/src/common_widgets/image_circular_custom.dart';
-import 'package:connect_api_endpoint/src/features/create_users/presentation/create_user_screen.dart';
 import 'package:connect_api_endpoint/src/features/users/data/user_repository.dart';
+import 'package:connect_api_endpoint/src/features/users/presentasion/create_users/create_user_screen.dart';
 import 'package:connect_api_endpoint/src/features/users/presentasion/detail/detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
