@@ -18,6 +18,6 @@ final apiUserProvider = Provider<UserApi>((ref) => UserApi());
 
 final userDataProvider = FutureProvider<List<User>>(
   (ref) async {
-    return ref.read(apiUserProvider).getUser();
+    return ref.watch(apiUserProvider).getUser();
   },
 );

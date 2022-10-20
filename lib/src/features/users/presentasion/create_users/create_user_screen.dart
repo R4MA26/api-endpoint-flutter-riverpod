@@ -88,8 +88,30 @@ class CreateUsersScreenState extends ConsumerState<CreateUsersScreen> {
                   child: ElevatedButton(
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        _data = await postUserProvider.addUser(
-                            _controllerName.text, _controllerJob.text);
+                        _data = await postUserProvider.addUser(_controllerName.text, _controllerJob.text);
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: const Text('Created Succes'),
+                              content: SizedBox(
+                                height: 100,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Name: ${_data!.name}'),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    Text('Job: ${_data!.job}'),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                        _controllerJob.clear();
+                        _controllerName.clear();
                       }
                       log(_data?.name.toString() ?? "Failed");
                       log(_data?.job.toString() ?? "Failed");
