@@ -9,8 +9,8 @@ class UserApi {
   Future<List<User>> getUser() async {
     final http.Response res = await http.get(Uri.parse(Apis.getUser));
     if (res.statusCode == 200) {
-      final List result = jsonDecode(res.body)['data'];
-      return result.map((value) => User.fromJson(value)).toList();
+      final List result = jsonDecode(res.body)['results'];
+      return result.map((value) => User.fromMap(value)).toList();
     } else {
       throw Exception(res.reasonPhrase);
     }

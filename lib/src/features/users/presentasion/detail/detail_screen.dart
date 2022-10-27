@@ -11,7 +11,7 @@ class DetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(dataUser.firstName),
+        title: Text(dataUser.name),
         centerTitle: true,
       ),
       body: Center(
@@ -22,16 +22,16 @@ class DetailScreen extends StatelessWidget {
             ),
             ImageCircularCustom(
               size: 60,
-              image: dataUser.avatar,
+              image: dataUser.image,
             ),
             const SizedBox(
               height: 10,
             ),
-            Text('${dataUser.firstName} ${dataUser.lastName}'),
+            Text('${dataUser.name} ${dataUser.status}'),
             const SizedBox(
               height: 5,
             ),
-            Text(dataUser.email),
+            Text(dataUser.name),
           ],
         ),
       ),

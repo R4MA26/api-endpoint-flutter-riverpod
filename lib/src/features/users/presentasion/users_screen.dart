@@ -16,9 +16,6 @@ class UsersScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final data = ref.watch(userDataProvider);
     final deleteUserProvider = ref.read(userDeleteDataProvider);
-    // final login = ref.read(loginUserRepositoryProvider);
-
-    // log(login.getToken() ?? "kosong");
 
     return Scaffold(
       appBar: AppBar(
@@ -40,46 +37,40 @@ class UsersScreen extends ConsumerWidget {
       ),
       body: data.when(
         data: (data) {
-          return Column(
-            children: [
-              ...data.map(
-                (value) => ListView(
-                  shrinkWrap: true,
-                  children: [
-                    InkWell(
-                      onTap: () => Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => DetailScreen(
-                            dataUser: value,
-                          ),
-                        ),
-                      ),
-                      child: Dismissible(
-                        key: UniqueKey(),
-                        background: Container(
-                          color: Colors.red,
-                        ),
-                        onDismissed: (direction) {
-                          deleteUserProvider.delUser(value.id);
-                          log(value.id.toString());
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                  'Name: ${value.firstName},id: ${value.id} Deleted'),
-                            ),
-                          );
-                        },
-                        child: ListTile(
-                          title: Text(value.firstName),
-                          subtitle: Text(value.lastName),
-                          trailing: ImageCircularCustom(image: value.avatar),
-                        ),
-                      ),
+          return ListView.builder(
+            itemCount: data.length,
+            itemBuilder: (context, index) {
+              var value = data[index];
+              return InkWell(
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => DetailScreen(
+                      dataUser: value,
                     ),
-                  ],
+                  ),
                 ),
-              )
-            ],
+                child: Dismissible(
+                  key: UniqueKey(),
+                  background: Container(
+                    color: Colors.red,
+                  ),
+                  onDismissed: (direction) {
+                    deleteUserProvider.delUser(value.id);
+                    log(value.id.toString());
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Name: ${value.name},id: ${value.id} Deleted'),
+                      ),
+                    );
+                  },
+                  child: ListTile(
+                    title: Text(value.name),
+                    subtitle: Text(value.status),
+                    trailing: ImageCircularCustom(image: value.image),
+                  ),
+                ),
+              );
+            },
           );
         },
         error: (error, stackTrace) => Text(error.toString()),

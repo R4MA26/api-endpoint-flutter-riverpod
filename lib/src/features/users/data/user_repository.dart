@@ -17,7 +17,7 @@ final userDeleteDataProvider = ChangeNotifierProvider<DeleteUserRepository>(
 final apiUserProvider = Provider<UserApi>((ref) => UserApi());
 
 final userDataProvider = FutureProvider<List<User>>(
-  (ref) async {
+  (ref) {
     return ref.watch(apiUserProvider).getUser();
   },
 );

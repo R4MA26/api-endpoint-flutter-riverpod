@@ -1,38 +1,41 @@
 import 'dart:convert';
 
-User userFromJson(String str) => User.fromJson(json.decode(str));
-
-String userToJson(User data) => json.encode(data.toJson());
-
 class User {
   User({
     required this.id,
-    required this.email,
-    required this.firstName,
-    required this.lastName,
-    required this.avatar,
+    required this.name,
+    required this.status,
+    required this.image,
   });
-
   final int id;
-  final String email;
-  final String firstName;
-  final String lastName;
-  final String avatar;
+  final String name;
+  final String status;
+  final String image;
 
-  factory User.fromJson(Map<String, dynamic> json) => User(
-        id: json["id"],
-        email: json["email"],
-        firstName: json["first_name"] ?? 'First Name',
-        lastName: json["last_name"] ?? 'Last Name',
-        avatar: json["avatar"] ??
-            'https://images.unsplash.com/photo-1658431618300-a69b07fb5782?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60',
-      );
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'id': id,
+      'name': name,
+      'status': status,
+      'image': image,
+    };
+  }
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "email": email,
-        "first_name": firstName,
-        "last_name": lastName,
-        "avatar": avatar,
-      };
+  factory User.fromMap(Map<String, dynamic> map) {
+    return User(
+      id: map['id'] as int,
+      name: map['name'] as String,
+      status: map['status'] as String,
+      image: map['image'] as String,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory User.fromJson(String source) => User.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  @override
+  String toString() {
+    return 'User(id: $id, name: $name, status: $status, image: $image)';
+  }
 }
